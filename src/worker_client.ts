@@ -1,3 +1,6 @@
+import { createCopycatPreviewBuffers, fitCopycatPreview, PreviewVoxel } from './copycats/preview';
+import { RenderCopycatsParams } from './worker_types';
+import { AppError } from './util/error_util';
 import path from 'path';
 
 import { Atlas } from './atlas';
@@ -85,6 +88,8 @@ export class WorkerClient {
         const importer = ImporterFactor.GetImporter(parsed.ext === '.obj' ? 'obj' : 'gltf');
         this._loadedMesh = await importer.import(params.file);
 
+        this._loadedVoxelMesh = undefined;
+        this._loadedBlockMesh = undefined;
         this._loadedMesh.processMesh(params.rotation.y, params.rotation.x, params.rotation.z);
 
         return {
@@ -98,6 +103,8 @@ export class WorkerClient {
         ASSERT(this._loadedMesh !== undefined);
 
         this._loadedMesh.setMaterials(params.materials);
+        this._loadedVoxelMesh = undefined;
+        this._loadedBlockMesh = undefined;
 
         return {
             materials: this._loadedMesh.getMaterials(),
@@ -121,6 +128,7 @@ export class WorkerClient {
         const voxeliser: IVoxeliser = VoxeliserFactory.GetVoxeliser(params.voxeliser);
         this._loadedVoxelMesh = voxeliser.voxelise(this._loadedMesh, params);
         this._loadedVoxelMesh.calculateNeighbours();
+        this._loadedBlockMesh = undefined;
 
         this._voxelMeshChunkIndex = 0;
 
@@ -224,10 +232,28 @@ export class WorkerClient {
     }
     */
 
+    public renderCopycats(params: RenderCopycatsParams.Input): RenderCopycatsParams.Output {
+        ASSERT(this._loadedVoxelMesh !== undefined);
+        try {
+            const voxels: PreviewVoxel[] = this._loadedBlockMesh
+                ? this._loadedBlockMesh.getBlocks().map((b) => ({position: [b.voxel.position.x, b.voxel.position.y, b.voxel.position.z], colour: b.voxel.colour, material: b.blockInfo.name}))
+                : this._loadedVoxelMesh.getVoxels().map((v) => ({position: [v.position.x, v.position.y, v.position.z], colour: v.colour}));
+            const {fit, colours, origin, textured} = fitCopycatPreview(voxels, params.options);
+            const atlas = Atlas.getVanillaAtlas()!;
+            return {
+                buffers: createCopycatPreviewBuffers(fit, params.options.resolution, origin, colours, textured ? atlas.getBlocks() : undefined),
+                textured, atlasSize: atlas.getAtlasSize(), blocks: fit.blocks.length,
+                size: fit.size, approximatedBlocks: fit.approximatedBlocks,
+            };
+        } catch (error: any) {
+            throw new AppError(error.message);
+        }
+    }
+
     public export(params: ExportParams.Input): ExportParams.Output {
         ASSERT(this._loadedBlockMesh !== undefined);
 
-        const exporter: IExporter = ExporterFactory.GetExporter(params.exporter);
+        const exporter: IExporter = ExporterFactory.GetExporter(params.exporter, params.copycatOptions);
         const files = exporter.export(this._loadedBlockMesh);
 
         return {

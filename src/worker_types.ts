@@ -164,9 +164,22 @@ export namespace RenderBlockMeshParams {
 }
 */
 
+export namespace RenderCopycatsParams {
+    export type Input = { options: import('./copycats/types').CopycatOptions };
+    export type Output = {
+        buffers: TBlockMeshBufferDescription[];
+        textured: boolean;
+        atlasSize: number;
+        blocks: number;
+        size: import('./copycats/types').Point;
+        approximatedBlocks: number;
+    };
+}
+
 export namespace ExportParams {
     export type Input = {
         exporter: TExporters,
+        copycatOptions?: import('./copycats/types').CopycatOptions,
     }
 
     export type Output = {
@@ -191,6 +204,7 @@ export type TToWorkerMessage =
     | { action: 'Assign', params: AssignParams.Input }
     //| { action: 'RenderBlockMesh', params: RenderBlockMeshParams.Input }
     | { action: 'RenderNextBlockMeshChunk', params: RenderNextBlockMeshChunkParams.Input }
+    | { action: 'RenderCopycats', params: RenderCopycatsParams.Input }
     | { action: 'Export', params: ExportParams.Input }
 
 export type TFromWorkerMessage =
@@ -209,4 +223,5 @@ export type TFromWorkerMessage =
         | { action: 'Assign', result: AssignParams.Output }
         //| { action: 'RenderBlockMesh', result: RenderBlockMeshParams.Output }
         | { action: 'RenderNextBlockMeshChunk', result: RenderNextBlockMeshChunkParams.Output }
+        | { action: 'RenderCopycats', result: RenderCopycatsParams.Output }
         | { action: 'Export', result: ExportParams.Output }));

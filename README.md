@@ -34,6 +34,13 @@
 </p>
 
 ## Usage
+
+### Create / Copycats+ support in this checkout
+
+For Minecraft **1.21.1 on NeoForge**, this checkout adds single-file Create `.nbt` export and Copycats+ shape fitting. Use exact **2× half-block detail** or **4×/8×/16× shape fitting**, with separate materials on multipart copycats. Enable **Copycat-safe materials** when assigning blocks, then choose **Create + Copycats+ — 1.21.1 (.nbt)** when exporting.
+
+See [the implementation plan, supported block families, and testing guide](docs/copycats-create.md). Ready-made in-game tests are in [examples/create](examples/create). Functional Copycats+ blocks such as doors, pipes, and cogwheels are not yet synthesized automatically.
+
 :warning: **ObjToSchematic is now primarily a website, visit https://objtoschematic.com for the latest version.**
 
 #### Desktop Version
@@ -120,3 +127,5 @@ Here is where you can edit the materials that the loaded model uses. Any changes
 
 ### Export
 * **File format** - The format to save your structure to. The [Litematica](https://www.curseforge.com/minecraft/mc-mods/litematica) format is strongly recommended and is significantly faster to export to for large structures. The Schematic exporter is useful if you still play in 1.12 as it uses the old block ID system before The Flattening, however many new blocks cannot be encoded in this format so they will be turned into Stone blocks. The NBT exporter is used for Minecraft's [structure blocks](https://minecraft.wiki/w/Structure_Block). The OBJ exporter can be used to render your structres in a program such as Blender.
+
+Copycat shapes can also be previewed before export: after voxelising, click **Preview Copycats** in Assign. Unassigned parts use solid voxel colours; assigned parts use material textures. See [preview testing](docs/copycats-create.md#testing-the-preview).

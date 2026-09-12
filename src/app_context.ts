@@ -1,4 +1,5 @@
 import '../styles.css';
+import { PALETTE_COPYCAT } from '../res/palettes/copycat';
 import { AppAnalytics } from './analytics';
 
 import { FallableBehaviour } from './block_mesh';
@@ -263,7 +264,7 @@ export class AppContext {
                 action: 'Assign',
                 params: {
                     textureAtlas: components.textureAtlas.getValue(),
-                    blockPalette: components.blockPalette.getValue().getBlocks(),
+                    blockPalette: components.copycatPalette.getValue() ? PALETTE_COPYCAT : components.blockPalette.getValue().getBlocks(),
                     dithering: components.dithering.getValue(),
                     ditheringMagnitude: components.ditheringMagnitude.getValue(),
                     colourSpace: ColourSpace.RGB,
@@ -338,6 +339,12 @@ export class AppContext {
                 action: 'Export',
                 params: {
                     exporter: components.export.getValue(),
+                    copycatOptions: {
+                        resolution: UI.Get.layout.assign.components.copycatResolution.getValue(),
+                        strict: UI.Get.layout.assign.components.copycatStrict.getValue(),
+                        includeSlopes: UI.Get.layout.assign.components.copycatSlopes.getValue(),
+                        includePanels: UI.Get.layout.assign.components.copycatPanels.getValue(),
+                    },
                 },
             });
 
@@ -352,7 +359,8 @@ export class AppContext {
             ASSERT(this._loadedFilename !== null)
             const fileExport = resultExport.result.files;
             if (fileExport.type === 'single') {
-                download(fileExport.content, `${this._loadedFilename}_OTS${fileExport.extension}`);
+                const filename = `${this._loadedFilename}_OTS${fileExport.extension}`;
+                download(fileExport.content, fileExport.extension === '.nbt' ? filename.toLowerCase().replace(/[^a-z0-9._-]/g, '_') : filename);
             } else {
                 const zipFiles = fileExport.regions.map((region) => {
                     // .nbt exports need to be lowercase
@@ -386,22 +394,47 @@ export class AppContext {
         return false;
     }
 
+    private _enabledThrough = EAction.Import;
+
+    private async _renderCopycats() {
+        AppConsole.info(LOC('assign.components.copycat_preview_loading'));
+        const components = UI.Get.layout.assign.components;
+        const result = await this._workerController.execute({action: 'RenderCopycats', params: {
+            options: {resolution: components.copycatResolution.getValue(), strict: components.copycatStrict.getValue(), includeSlopes: components.copycatSlopes.getValue(),
+                includePanels: components.copycatPanels.getValue()},
+        }});
+        if (this._handleErrors(result)) return;
+        ASSERT(result.action === 'RenderCopycats');
+        Renderer.Get.useCopycatPreview(result.result);
+        AppConsole.success(LOC('assign.components.copycat_preview_ready', {
+            blocks: result.result.blocks, size: result.result.size.join(' x '),
+            mode: LOC(result.result.textured ? 'assign.components.copycat_preview_textures' : 'assign.components.copycat_preview_colours'),
+        }));
+        if (result.result.approximatedBlocks) AppConsole.warning(LOC('assign.components.copycat_preview_approx', {count: result.result.approximatedBlocks}));
+    }
+
+    public async previewCopycats() {
+        if (this._workerController.isBusy() || this._enabledThrough < EAction.Assign) return;
+        UI.Get.disableAll();
+        // Remove a stale preview before fitting changed options, including failures.
+        Renderer.Get.clearCopycatPreview();
+        try { await this._renderCopycats(); }
+        finally { UI.Get.enableTo(this._enabledThrough); }
+    }
+
     public async do(action: EAction) {
+        const refreshCopycats = Renderer.Get.getActiveMeshType() === MeshType.CopycatMesh;
+        if (action !== EAction.Export) Renderer.Get.clearCopycatPreview();
         // Disable the UI while the worker is working
         UI.Get.disableAll();
 
         this._lastAction = action;
 
         const success = await this._executeAction(action);
-        if (success) {
-            if (action === EAction.Import) {
-                UI.Get.enableTo(EAction.Voxelise);
-            } else {
-                UI.Get.enableTo(action + 1);
-            }
-        } else {
-            UI.Get.enableTo(action);
-        }
+        this._enabledThrough = success ? (action === EAction.Import ? EAction.Voxelise : action + 1) : action;
+        try {
+            if (success && refreshCopycats && (action === EAction.Voxelise || action === EAction.Assign)) await this._renderCopycats();
+        } finally { UI.Get.enableTo(this._enabledThrough); }
     }
 
     private _addWorkerMessagesToConsole(messages: TMessage[]) {

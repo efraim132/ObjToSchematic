@@ -89,6 +89,8 @@ export async function doWork(message: TToWorkerMessage): Promise<TFromWorkerMess
                     result: WorkerClient.Get.renderChunkedBlockMesh(message.params),
                     messages: StatusHandler.getAll(),
                 });
+            case 'RenderCopycats':
+                return {action: 'RenderCopycats', result: WorkerClient.Get.renderCopycats(message.params), messages: StatusHandler.getAll()};
             case 'Export':
                 return Promise.resolve({
                     action: 'Export',

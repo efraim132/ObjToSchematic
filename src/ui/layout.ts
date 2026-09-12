@@ -38,7 +38,7 @@ import { AppConfig } from '../config';
 export type Group = {
     id: string,
     label: TLocalisedString;
-    components: { [key: string]: ConfigComponent<any, any> };
+    components: { [key: string]: ConfigComponent<any, any> | ButtonComponent };
     componentOrder: string[];
     execButton?: ButtonComponent;
 }
@@ -230,6 +230,42 @@ export class UI {
                     .setShouldObeyGroupEnables(false),
                 'blockPalette': new PaletteComponent()
                     .setLabel('assign.components.block_palette'),
+                'copycatResolution': new ComboboxComponent<2 | 4 | 8 | 16>()
+                    .addItems([
+                        {displayLocKey: 'export.components.copycat_2', payload: 2},
+                        {displayLocKey: 'export.components.copycat_4', payload: 4},
+                        {displayLocKey: 'export.components.copycat_8', payload: 8},
+                        {displayLocKey: 'export.components.copycat_16', payload: 16},
+                    ])
+                    .setLabel('export.components.copycat_resolution')
+                    .addValueChangedListener(() => this._updateCopycatSlopeControl())
+                    .addEnabledChangedListener(() => this._updateCopycatSlopeControl()),
+                'copycatStrict': new CheckboxComponent()
+                    .setDefaultValue(true)
+                    .setCheckedText('export.components.copycat_exact')
+                    .setUncheckedText('export.components.copycat_approximate')
+                    .setLabel('export.components.copycat_fidelity')
+                    .addValueChangedListener(() => this._updateCopycatSlopeControl())
+                    .addEnabledChangedListener(() => this._updateCopycatSlopeControl()),
+                'copycatSlopes': new CheckboxComponent()
+                    .setDefaultValue(false)
+                    .setLabel('assign.components.copycat_slopes')
+                    .setCheckedText('assign.components.copycat_slopes_on')
+                    .setUncheckedText('assign.components.copycat_slopes_off')
+                    .setShouldObeyGroupEnables(false),
+                'copycatPanels': new CheckboxComponent()
+                    .setDefaultValue(true)
+                    .setLabel('assign.components.copycat_panels')
+                    .setCheckedText('assign.components.copycat_panels_on')
+                    .setUncheckedText('assign.components.copycat_panels_off'),
+                'copycatPreview': new ButtonComponent()
+                    .setLabel(LOC('assign.components.copycat_preview'))
+                    .setOnClick(() => { this._appContext?.previewCopycats(); }),
+                'copycatPalette': new CheckboxComponent()
+                    .setDefaultValue(false)
+                    .setCheckedText('assign.components.copycat_palette_on')
+                    .setUncheckedText('assign.components.copycat_palette_off')
+                    .setLabel('assign.components.copycat_palette'),
                 'dithering': new ComboboxComponent<TDithering>()
                     .addItems([{
                         displayLocKey: 'assign.components.ordered',
@@ -316,7 +352,13 @@ export class UI {
                     .setPlaceholderText('misc.advanced_settings'),
             },
             componentOrder: [
+                'copycatResolution',
+                'copycatStrict',
+                'copycatSlopes',
+                'copycatPanels',
+                'copycatPreview',
                 'blockPalette',
+                'copycatPalette',
                 'dithering',
                 'placeholder',
                 'textureAtlas',
@@ -363,6 +405,14 @@ export class UI {
                             payload: 'nbt',
                         },
                         {
+                            displayLocKey: 'export.components.create',
+                            payload: 'create',
+                        },
+                        {
+                            displayLocKey: 'export.components.create_copycats',
+                            payload: 'create_copycats',
+                        },
+                        {
                             displayLocKey: 'export.components.indexed_json',
                             payload: 'indexed_json',
                         },
@@ -372,6 +422,7 @@ export class UI {
                         },
                     ])
                     .setLabel('export.components.exporter'),
+
             },
             componentOrder: ['export'],
             execButton: new ButtonComponent()
@@ -650,7 +701,7 @@ export class UI {
         });
     }
 
-    private _forEachComponent(action: EAction, functor: (component: ConfigComponent<unknown, unknown>) => void) {
+    private _forEachComponent(action: EAction, functor: (component: ConfigComponent<unknown, unknown> | ButtonComponent) => void) {
         const group = this._getGroup(action);
 
         for (const elementName of group.componentOrder) {
@@ -723,7 +774,8 @@ export class UI {
             }
 
             this._forEachComponent(i, (component) => {
-                component.refresh();
+                if (component instanceof ButtonComponent) component.setLabel(LOC('assign.components.copycat_preview')).updateLabel();
+                else component.refresh();
             });
         }
 
@@ -807,6 +859,12 @@ export class UI {
                 element.finalise();
             }
         }
+    }
+
+    private _updateCopycatSlopeControl() {
+        const {copycatResolution, copycatStrict, copycatSlopes} = this._ui.assign.components;
+        copycatSlopes.setEnabled(copycatResolution.enabled && copycatStrict.enabled &&
+            copycatResolution.getValue() > 2 && !copycatStrict.getValue(), false);
     }
 
     public get layout() {

@@ -1,3 +1,4 @@
+import { RenderCopycatsParams } from './worker_types';
 import * as twgl from 'twgl.js';
 
 import VANILLA_TEXTURE from '../res/atlases/vanilla.png';
@@ -21,7 +22,8 @@ export enum MeshType {
     None,
     TriangleMesh,
     VoxelMesh,
-    BlockMesh
+    BlockMesh,
+    CopycatMesh
 }
 /* eslint-enable */
 
@@ -79,6 +81,8 @@ export class Renderer {
     }>;
     public _voxelBuffer?: twgl.BufferInfo[];
     private _blockBuffer?: twgl.BufferInfo[];
+    private _copycatBuffer?: twgl.BufferInfo[];
+    private _copycatTextured = false;
     private _blockBounds: Bounds;
     private _axisBuffer: RenderBuffer;
 
@@ -193,6 +197,9 @@ export class Renderer {
                     break;
                 case MeshType.VoxelMesh:
                     this._drawVoxelMesh();
+                    break;
+                case MeshType.CopycatMesh:
+                    this._drawCopycats();
                     break;
                 case MeshType.BlockMesh:
                     this._drawBlockMesh();
@@ -558,7 +565,7 @@ export class Renderer {
                 if (gridBuffer !== undefined) {
                     this._drawBuffer(this._gl.LINES, gridBuffer.getWebGLBuffer(), ShaderManager.Get.debugProgram, {
                         u_worldViewProjection: ArcballCamera.Get.getWorldViewProjection(),
-                        u_worldOffset: [0, this._sliceViewEnabled ? this._sliceHeight * this._voxelSize: 0, 0],
+                        u_worldOffset: [0, this.isSliceViewerEnabled() ? this._sliceHeight * this._voxelSize: 0, 0],
                     });
                 }
             }
@@ -600,6 +607,43 @@ export class Renderer {
                     u_fresnelMix: AppConfig.Get.FRESNEL_MIX,
                 });
             }
+        });
+    }
+
+    public clearCopycatPreview() {
+        this._copycatBuffer?.forEach((info) => {
+            Object.values(info.attribs ?? {}).forEach((attribute) => this._gl.deleteBuffer(attribute.buffer));
+            if (info.indices) this._gl.deleteBuffer(info.indices);
+        });
+        this._copycatBuffer = undefined;
+        if (this._meshToUse === MeshType.CopycatMesh) this.setModelToUse(this._modelsAvailable);
+    }
+
+    public useCopycatPreview(params: RenderCopycatsParams.Output) {
+        this.clearCopycatPreview();
+        this._copycatBuffer = params.buffers.map((chunk) => twgl.createBufferInfoFromArrays(this._gl, chunk.buffer));
+        this._copycatTextured = params.textured;
+        this._atlasSize = params.atlasSize;
+        if (params.textured && !this._atlasTexture) {
+            this._atlasTexture = twgl.createTexture(this._gl, {src: VANILLA_TEXTURE, mag: this._gl.NEAREST, min: this._gl.NEAREST}, () => this.forceRedraw());
+        }
+        for (const axis of ['x', 'y', 'z'] as const) this._gridBuffers[axis][MeshType.CopycatMesh] = this._gridBuffers[axis][MeshType.VoxelMesh];
+        this.setModelToUse(MeshType.CopycatMesh);
+    }
+
+    private _drawCopycats() {
+        const shader = this._copycatTextured ? ShaderManager.Get.blockProgram : ShaderManager.Get.voxelProgram;
+        const uniforms = {
+            u_worldViewProjection: ArcballCamera.Get.getWorldViewProjection(),
+            u_voxelSize: this._voxelSize, u_gridOffset: this._gridOffset.toArray(),
+            u_ambientOcclusion: false, u_texture: this._atlasTexture, u_atlasSize: this._atlasSize,
+            u_nightVision: true, u_sliceHeight: Infinity,
+        };
+        this._copycatBuffer?.forEach((buffer) => {
+            this._gl.useProgram(shader.program);
+            twgl.setBuffersAndAttributes(this._gl, shader, buffer);
+            twgl.setUniforms(shader, uniforms);
+            this._gl.drawElements(this._gl.TRIANGLES, buffer.numElements, this._gl.UNSIGNED_INT, 0);
         });
     }
 
@@ -647,7 +691,7 @@ export class Renderer {
     }
 
     public setModelToUse(meshType: MeshType) {
-        const isModelAvailable = this._modelsAvailable >= meshType;
+        const isModelAvailable = meshType === MeshType.CopycatMesh ? !!this._copycatBuffer : this._modelsAvailable >= meshType;
         if (isModelAvailable) {
             this._meshToUse = meshType;
         }

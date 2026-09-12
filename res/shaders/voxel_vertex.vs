@@ -19,7 +19,7 @@ varying vec4 v_colour;
 vec3 light = vec3(0.78, 0.98, 0.59);
 
 void main() {
-    v_lighting = dot(light, abs(normal));
+    v_lighting = dot(light, normal * normal);
     v_occlusion = occlusion;
     v_texcoord = texcoord;
     v_colour = colour;

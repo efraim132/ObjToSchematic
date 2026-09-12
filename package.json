@@ -15,6 +15,7 @@
     "dist": "webpack --config ./webpack.prod.js",
     "atlas": "ts-node ./tools/build-atlas.ts",
     "headless": "ts-node ./tools/run-headless.ts",
+    "create:fixtures": "ts-node ./tools/create-copycat-fixtures.ts",
     "build": "tsc"
   },
   "repository": {

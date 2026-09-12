@@ -1,4 +1,5 @@
 import { IExporter } from './base_exporter';
+import { CreateExporter } from './create_exporter';
 import { IndexedJSONExporter } from './indexed_json_exporter ';
 import { Litematic } from './litematic_exporter';
 import { NBTExporter } from './nbt_exporter';
@@ -11,11 +12,13 @@ export type TExporters =
     'litematic' |
     'schem' |
     'nbt' |
+    'create' |
+    'create_copycats' |
     'uncompressed_json' |
     'indexed_json';
 
 export class ExporterFactory {
-    public static GetExporter(voxeliser: TExporters): IExporter {
+    public static GetExporter(voxeliser: TExporters, copycatOptions?: import('../copycats/types').CopycatOptions): IExporter {
         switch (voxeliser) {
             case 'schematic':
                 return new Schematic();
@@ -25,6 +28,10 @@ export class ExporterFactory {
                 return new SchemExporter();
             case 'nbt':
                 return new NBTExporter();
+            case 'create':
+                return new CreateExporter();
+            case 'create_copycats':
+                return new CreateExporter(copycatOptions ?? {resolution: 2, strict: true});
             case 'uncompressed_json':
                 return new UncompressedJSONExporter();
             case 'indexed_json':

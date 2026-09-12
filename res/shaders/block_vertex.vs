@@ -28,7 +28,7 @@ void main() {
     v_texcoord = texcoord;
     v_occlusion = occlusion;
     v_blockTexcoord = blockTexcoord;
-    v_lighting = dot(light, abs(normal));
+    v_lighting = dot(light, normal * normal);
     v_blockLighting = lighting;
 
     v_sliced = blockPosition.y > u_sliceHeight ? 1.0 : 0.0;

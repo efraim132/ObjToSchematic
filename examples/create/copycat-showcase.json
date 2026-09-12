@@ -1,0 +1,1147 @@
+{
+  "size": [
+    27,
+    2,
+    24
+  ],
+  "blocks": [
+    {
+      "position": [
+        0,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_block",
+      "properties": {},
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_byte",
+      "properties": {
+        "waterlogged": "false",
+        "bottom_northwest": "true",
+        "bottom_northeast": "false",
+        "bottom_southwest": "false",
+        "bottom_southeast": "false",
+        "top_northwest": "false",
+        "top_northeast": "false",
+        "top_southwest": "false",
+        "top_southeast": "false"
+      },
+      "materials": {
+        "bottom_northwest": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_byte",
+      "properties": {
+        "waterlogged": "false",
+        "bottom_northwest": "false",
+        "bottom_northeast": "false",
+        "bottom_southwest": "false",
+        "bottom_southeast": "false",
+        "top_northwest": "false",
+        "top_northeast": "false",
+        "top_southwest": "false",
+        "top_southeast": "true"
+      },
+      "materials": {
+        "top_southeast": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_byte",
+      "properties": {
+        "waterlogged": "false",
+        "bottom_northwest": "true",
+        "bottom_northeast": "true",
+        "bottom_southwest": "true",
+        "bottom_southeast": "true",
+        "top_northwest": "true",
+        "top_northeast": "true",
+        "top_southwest": "true",
+        "top_southeast": "true"
+      },
+      "materials": {
+        "bottom_northwest": "minecraft:red_concrete",
+        "bottom_northeast": "minecraft:orange_concrete",
+        "bottom_southwest": "minecraft:yellow_concrete",
+        "bottom_southeast": "minecraft:lime_concrete",
+        "top_northwest": "minecraft:cyan_concrete",
+        "top_northeast": "minecraft:blue_concrete",
+        "top_southwest": "minecraft:purple_concrete",
+        "top_southeast": "minecraft:white_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_beam",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "x"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_beam",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "y"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_beam",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "z"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_flat_pane",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "x"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        0
+      ],
+      "block": "copycats:copycat_flat_pane",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "y"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_flat_pane",
+      "properties": {
+        "waterlogged": "false",
+        "axis": "z"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_slab",
+      "properties": {
+        "axis": "x",
+        "type": "bottom",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "bottom": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_slab",
+      "properties": {
+        "axis": "y",
+        "type": "top",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "top": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_slab",
+      "properties": {
+        "axis": "z",
+        "type": "double",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "bottom": "minecraft:red_concrete",
+        "top": "minecraft:orange_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        3
+      ],
+      "block": "create:copycat_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        3
+      ],
+      "block": "create:copycat_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        3
+      ],
+      "block": "create:copycat_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "down"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        3
+      ],
+      "block": "copycats:copycat_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "down",
+        "layers": "8"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_half_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "offset": "south"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_half_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "offset": "south"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_half_panel",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "down",
+        "offset": "east"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_byte_panel",
+      "properties": {
+        "facing": "south",
+        "waterlogged": "false",
+        "bottom_right": "true",
+        "bottom_left": "false",
+        "top_right": "false",
+        "top_left": "false"
+      },
+      "materials": {
+        "bottom_right": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_byte_panel",
+      "properties": {
+        "facing": "east",
+        "waterlogged": "false",
+        "bottom_right": "true",
+        "bottom_left": "false",
+        "top_right": "false",
+        "top_left": "false"
+      },
+      "materials": {
+        "bottom_right": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_byte_panel",
+      "properties": {
+        "facing": "down",
+        "waterlogged": "false",
+        "bottom_right": "true",
+        "bottom_left": "true",
+        "top_right": "true",
+        "top_left": "true"
+      },
+      "materials": {
+        "bottom_right": "minecraft:red_concrete",
+        "bottom_left": "minecraft:orange_concrete",
+        "top_right": "minecraft:yellow_concrete",
+        "top_left": "minecraft:lime_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_board",
+      "properties": {
+        "waterlogged": "false",
+        "west": "true",
+        "east": "false",
+        "down": "false",
+        "up": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "materials": {
+        "west": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        6
+      ],
+      "block": "copycats:copycat_board",
+      "properties": {
+        "waterlogged": "false",
+        "west": "false",
+        "east": "false",
+        "down": "false",
+        "up": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "materials": {
+        "south": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_board",
+      "properties": {
+        "waterlogged": "false",
+        "west": "true",
+        "east": "true",
+        "down": "true",
+        "up": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "materials": {
+        "west": "minecraft:red_concrete",
+        "east": "minecraft:orange_concrete",
+        "down": "minecraft:yellow_concrete",
+        "up": "minecraft:lime_concrete",
+        "north": "minecraft:cyan_concrete",
+        "south": "minecraft:blue_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_vertical_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "layers": "8"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_slope_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        9
+      ],
+      "block": "copycats:copycat_slope_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slope_layer",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top",
+        "layers": "7"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        12
+      ],
+      "block": "create:copycat_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        12
+      ],
+      "block": "create:copycat_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        12
+      ],
+      "block": "create:copycat_step",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        12
+      ],
+      "block": "copycats:copycat_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top",
+        "layers": "8"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_corner_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_corner_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom",
+        "layers": "1"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_corner_slice",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top",
+        "layers": "8"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "half": "bottom",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "half": "bottom",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "half": "top",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_vertical_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        15
+      ],
+      "block": "copycats:copycat_vertical_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_slope",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "south",
+        "side": "left",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "north",
+        "side": "left",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_stairs",
+      "properties": {
+        "waterlogged": "false",
+        "facing": "east",
+        "side": "right",
+        "shape": "straight"
+      },
+      "materials": {
+        "material": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        12,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_half_layer",
+      "properties": {
+        "facing": "south",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        15,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_half_layer",
+      "properties": {
+        "facing": "north",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        18,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_vertical_half_layer",
+      "properties": {
+        "facing": "east",
+        "negative_layers": "8",
+        "positive_layers": "8",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "negative_layers": "minecraft:red_concrete",
+        "positive_layers": "minecraft:orange_concrete"
+      }
+    },
+    {
+      "position": [
+        21,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_stacked_half_layer",
+      "properties": {
+        "facing": "south",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        24,
+        1,
+        18
+      ],
+      "block": "copycats:copycat_stacked_half_layer",
+      "properties": {
+        "facing": "north",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        0,
+        1,
+        21
+      ],
+      "block": "copycats:copycat_stacked_half_layer",
+      "properties": {
+        "facing": "east",
+        "negative_layers": "8",
+        "positive_layers": "8",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "negative_layers": "minecraft:red_concrete",
+        "positive_layers": "minecraft:orange_concrete"
+      }
+    },
+    {
+      "position": [
+        3,
+        1,
+        21
+      ],
+      "block": "copycats:copycat_half_layer",
+      "properties": {
+        "axis": "x",
+        "half": "bottom",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        6,
+        1,
+        21
+      ],
+      "block": "copycats:copycat_half_layer",
+      "properties": {
+        "axis": "z",
+        "half": "bottom",
+        "negative_layers": "0",
+        "positive_layers": "1",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "positive_layers": "minecraft:red_concrete"
+      }
+    },
+    {
+      "position": [
+        9,
+        1,
+        21
+      ],
+      "block": "copycats:copycat_half_layer",
+      "properties": {
+        "axis": "z",
+        "half": "top",
+        "negative_layers": "8",
+        "positive_layers": "8",
+        "waterlogged": "false"
+      },
+      "materials": {
+        "negative_layers": "minecraft:red_concrete",
+        "positive_layers": "minecraft:orange_concrete"
+      }
+    }
+  ]
+}
